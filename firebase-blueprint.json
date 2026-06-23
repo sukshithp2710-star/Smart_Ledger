@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "BookkeepingEntry": {
+      "title": "BookkeepingEntry",
+      "description": "A ledger entry for an income or expense",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rawText": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "income",
+            "expense"
+          ]
+        },
+        "amount": {
+          "type": "number"
+        },
+        "category": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "description": "List of parsed items involved in the transaction"
+        }
+      },
+      "required": [
+        "timestamp",
+        "rawText",
+        "type",
+        "amount",
+        "category"
+      ]
+    },
+    "StockItem": {
+      "title": "StockItem",
+      "description": "An inventory item with burn rate prediction and low stock limits",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "currentStock": {
+          "type": "number"
+        },
+        "minStockAlert": {
+          "type": "number"
+        },
+        "burnRate": {
+          "type": "number",
+          "description": "Historical or calculated speed of stock depletion per day"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "name",
+        "currentStock",
+        "minStockAlert",
+        "burnRate",
+        "lastUpdated"
+      ]
+    }
+  },
+  "firestore": {
+    "bookkeeping_entries": {
+      "schema": "BookkeepingEntry",
+      "description": "Stores user financial bookkeeping entries mapped by transaction date"
+    },
+    "stock_items": {
+      "schema": "StockItem",
+      "description": "Current status of warehouse stock items and alert thresholds"
+    }
+  }
+}

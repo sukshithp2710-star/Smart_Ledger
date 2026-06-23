@@ -1,0 +1,10 @@
+{
+  "name": "SmartLedger AI",
+  "description": "An intelligent bookkeeping ledger and automated stock flow predictor powered by Gemini AI",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

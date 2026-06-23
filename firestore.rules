@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Standard rule allowing read/write operations for this local shop sandbox
+    match /bookkeeping_entries/{document} {
+      allow read, write: if true;
+    }
+    match /stock_items/{document} {
+      allow read, write: if true;
+    }
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
